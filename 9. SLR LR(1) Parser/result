@@ -1,0 +1,287 @@
+Module 1
+Reading Grammar
+Grammar
+S	ZZ	
+Z	xZ	y	
+
+Non-Terminals List
+S Z 
+
+Making Terminals List
+Terminals List
+x y 
+
+Making First List
+First
+S	x	y	
+Z	x	y	
+
+
+Making Follow List
+Follow
+S	$	
+Z	$	x	y	
+
+S':S S:ZZ Z:xZ Z:y 
+Min Item Set
+S	S:.ZZ	
+Z	Z:.xZ	Z:.y	
+
+Making Item Set 0
+Starting to find for Item 
+S'.:S 
+Closure on S'.:S
+S':.S 
+Has the closure been found for S':.S No!!!
+Taking closure for S':.S
+S':.S S:.ZZ 
+Closure found for S
+Has the closure been found for S:.ZZ No!!!
+Taking closure for S:.ZZ
+S':.S S:.ZZ Z:.xZ Z:.y 
+Closure found for SZ
+Closure found for SZ
+Closure found for SZ
+
+Starting to find for Item 
+S':.S 
+Closure on S':.S
+S':S. 
+Closure found for 
+Item 0 -> S Item 1
+S':.S 
+Item 1: S':S. 
+Contains a GOTO Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+
+
+
+Starting to find for Item 
+S:.ZZ 
+Closure on S:.ZZ
+S:Z.Z 
+Has the closure been found for S:Z.Z No!!!
+Taking closure for S:Z.Z
+S:Z.Z Z:.xZ Z:.y 
+Closure found for Z
+Closure found for Z
+Closure found for Z
+Item 0 -> Z Item 2
+S:.ZZ 
+Item 2: S:Z.Z Z:.xZ Z:.y 
+Contains a GOTO Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+S:Z.Z	Z:.xZ	Z:.y	
+
+
+
+Starting to find for Item 
+Z:.xZ 
+Closure on Z:.xZ
+Z:x.Z 
+Has the closure been found for Z:x.Z No!!!
+Taking closure for Z:x.Z
+Z:x.Z Z:.xZ Z:.y 
+Closure found for Z
+Closure found for Z
+Closure found for Z
+Item 0 -> x Item 3
+Z:.xZ 
+Item 3: Z:x.Z Z:.xZ Z:.y 
+Contains a Shift Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+S:Z.Z	Z:.xZ	Z:.y	
+Z:x.Z	Z:.xZ	Z:.y	
+
+
+
+Starting to find for Item 
+Z:.y 
+Closure on Z:.y
+Z:y. 
+Closure found for 
+Item 0 -> y Item 4
+Z:.y 
+Item 4: Z:y. 
+Contains a Shift Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+S:Z.Z	Z:.xZ	Z:.y	
+Z:x.Z	Z:.xZ	Z:.y	
+Z:y.	
+
+
+Item 1
+Contains a Reduce Step  S':S
+Accept State
+
+
+
+Starting to find for Item 
+S:Z.Z 
+Closure on S:Z.Z
+S:ZZ. 
+Closure found for 
+Item 2 -> Z Item 5
+S:Z.Z 
+Item 5: S:ZZ. 
+Contains a GOTO Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+S:Z.Z	Z:.xZ	Z:.y	
+Z:x.Z	Z:.xZ	Z:.y	
+Z:y.	
+S:ZZ.	
+
+
+
+Starting to find for Item 
+Z:.xZ 
+Closure on Z:.xZ
+Z:x.Z 
+Has the closure been found for Z:x.Z No!!!
+Taking closure for Z:x.Z
+Z:x.Z Z:.xZ Z:.y 
+Closure found for Z
+Closure found for Z
+Closure found for Z
+Item 2 -> x Item 3
+Contains a Shift Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+S:Z.Z	Z:.xZ	Z:.y	
+Z:x.Z	Z:.xZ	Z:.y	
+Z:y.	
+S:ZZ.	
+
+
+
+Starting to find for Item 
+Z:.y 
+Closure on Z:.y
+Z:y. 
+Closure found for 
+Item 2 -> y Item 4
+Contains a Shift Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+S:Z.Z	Z:.xZ	Z:.y	
+Z:x.Z	Z:.xZ	Z:.y	
+Z:y.	
+S:ZZ.	
+
+
+
+Starting to find for Item 
+Z:x.Z 
+Closure on Z:x.Z
+Z:xZ. 
+Closure found for 
+Item 3 -> Z Item 6
+Z:x.Z 
+Item 6: Z:xZ. 
+Contains a GOTO Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+S:Z.Z	Z:.xZ	Z:.y	
+Z:x.Z	Z:.xZ	Z:.y	
+Z:y.	
+S:ZZ.	
+Z:xZ.	
+
+
+
+Starting to find for Item 
+Z:.xZ 
+Closure on Z:.xZ
+Z:x.Z 
+Has the closure been found for Z:x.Z No!!!
+Taking closure for Z:x.Z
+Z:x.Z Z:.xZ Z:.y 
+Closure found for Z
+Closure found for Z
+Closure found for Z
+Item 3 -> x Item 3
+Contains a Shift Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+S:Z.Z	Z:.xZ	Z:.y	
+Z:x.Z	Z:.xZ	Z:.y	
+Z:y.	
+S:ZZ.	
+Z:xZ.	
+
+
+
+Starting to find for Item 
+Z:.y 
+Closure on Z:.y
+Z:y. 
+Closure found for 
+Item 3 -> y Item 4
+Contains a Shift Step
+Present State of Items
+S':.S	S:.ZZ	Z:.xZ	Z:.y	
+S':S.	
+S:Z.Z	Z:.xZ	Z:.y	
+Z:x.Z	Z:.xZ	Z:.y	
+Z:y.	
+S:ZZ.	
+Z:xZ.	
+
+
+Item 4
+Contains a Reduce Step  Z:y
+Reduce to Prod 3
+
+Item 5
+Contains a Reduce Step  S:ZZ
+Reduce to Prod 1
+
+Item 6
+Contains a Reduce Step  Z:xZ
+Reduce to Prod 2
+
+
+Item Set
+Item 0 -> S':.S S:.ZZ Z:.xZ Z:.y 
+Item 1 -> S':S. 
+Item 2 -> S:Z.Z Z:.xZ Z:.y 
+Item 3 -> Z:x.Z Z:.xZ Z:.y 
+Item 4 -> Z:y. 
+Item 5 -> S:ZZ. 
+Item 6 -> Z:xZ. 
+
+ 	$	x	y	S	Z	
+0		S3	S4	1	2	
+1	A					
+2		S3	S4		5	
+3		S3	S4		6	
+4	R3	R3	R3			
+5	R1					
+6	R2	R2	R2			
+
+SLR Parsing on yxxy$
+Step		Stack			String		Action
+1			0				yxxy$		Shift 4
+2			0y4				xxy$		Reduce 3
+3			0Z2				xxy$		Shift 3
+4			0Z2x3				xy$		Shift 3
+5			0Z2x3x3				y$		Shift 4
+6			0Z2x3x3y4				$		Reduce 3
+7			0Z2x3x3Z6				$		Reduce 2
+8			0Z2x3Z6				$		Reduce 2
+9			0Z2Z5				$		Reduce 1
+10			0S1		$		Accept
