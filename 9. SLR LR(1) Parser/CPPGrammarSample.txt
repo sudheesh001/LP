@@ -1,0 +1,42 @@
+E : E+E | E*E | (E) | i
+(Correct)
+
+E : E+T | T
+T : T*F | F
+F : (E) | i
+(Correct)
+
+S : L=R | R
+L : *R | i
+R : L
+(Correct)
+
+S : Ta | bTc | dc | bda
+T : d
+
+S : Ta | bTc | Uc | bUa
+T : d
+U : d
+
+A : BCD
+B : Bb | l
+C : cC | l
+D : d
+
+R : R+R | RR | R* | (R) | a | b
+(Not Correct)
+
+D : L;T
+L : L,i | i
+T : i | f
+(Correct)
+
+S : aSbS | a
+(Correct)
+
+S : ZZ
+Z : xZ | y
+
+E : E + T | T | V = E
+T : (E) | i
+V : i
