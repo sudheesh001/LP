@@ -1,0 +1,141 @@
+%{
+    #include "y.tab.h"
+        
+	#define MAX_NUM_IDENTS 50
+	#define MAX_ID_LENGTH 50
+
+        
+	int line = 1;
+	int yylval;
+	char idents [MAX_NUM_IDENTS][MAX_ID_LENGTH];
+	char nums [MAX_NUM_IDENTS][MAX_ID_LENGTH];
+	int numIdent;
+	int numNums;
+	int i;
+	int k;
+	int n;
+	int m;
+
+
+%}
+
+delim     [ \t]
+ws        {delim}*
+letter    [A-Za-z]
+digit     [0-9]
+id        {letter}({letter}|{digit})*
+number    {digit}+(\.{digit}+)?(E[+-]?{digit}+)?
+comment   --[^\n]*
+string    \"[^\"\n]*\"
+
+
+%%
+
+{ws}      
+IF        {return(IF);}
+THEN      {return(THEN);}
+ELSE      {return(ELSE);}
+WHILE     {return(WHILE);}
+DO        {return(DO);}
+BREAK     {return(BREAK);}
+ENDIF     {return(ENDIF);}
+ENDWHILE  {return(ENDWHILE);}
+END       {return(END);}
+RETURN    {return(RETURN);}
+INTEGER   {return(INTEGER);}
+BEGIN     {return(BEGINN);}
+FUNCTION  {return(FUNCTION);}
+PRINT     {return(PRINT);}
+PRINTLN   {return(PRINTLN);}
+PROCEDURE {return(PROCEDURE);}
+PROGRAM   {return(PROGRAM);}
+{id}      {yylval = (int) installID(); return(ID);}
+{number}  {yylval = (int) installNum(); return(NUMBER);}
+{comment} {}
+{string}  {return (STRING);}
+
+","       {return (COMMA);}
+"("       {return (LPAREN);}
+")"       {return (RPAREN);}
+":="      {return (ASSIGN);}
+";"       {return (SEMICOLON);}
+":"       {return (COLON);}
+"\n"	  {++line;}
+
+"<"       {yylval = LT; return(RELOP);}
+"<="      {yylval = LE; return(RELOP);}
+"="       {yylval = EQ; return(RELOP);}
+"<>"      {yylval = NE; return(RELOP);}
+">"       {yylval = GT; return(RELOP);}
+">="      {yylval = GE; return(RELOP);}
+
+"+"       {yylval = ADD; return(ADDOP);}
+"-"       {yylval = MINUS; return(ADDOP);}
+
+"*"       {yylval = MULT; return(MULTOP);}
+"/"       {yylval = DIV; return(MULTOP);}
+"%"       {yylval = MOD; return(MULTOP);}
+
+%%
+
+int installID()
+{
+        /* function to install the lexeme, whose first
+           character is pointed to by yytext, and whose
+           length is yyleng, into the symbol table and
+           return a pointer thereto */
+	int flag1 = 2;
+	for (n = 0; n < numIdent; ++n)
+	{
+		if (strcmp(idents[n],(yytext))==0)
+		{
+			return (int)yytext;
+			flag1 = 1;
+		}
+	}
+	if (flag1 != 1)
+	{ 
+		strncpy(idents[numIdent], yytext, yyleng);
+		numIdent++;
+		
+	}
+}
+
+int installNum()
+{
+        /* similar to installID, but puts numerical
+           constants into a separate table */
+	int flag2 = 2;
+	for (m = 0; m < numNums; ++m)
+	{
+		if (strcmp(nums[m],(yytext))== 0)
+		{
+			return (int)yytext;
+			flag2 = 1;
+		}
+	}
+	if (flag2 != 1)
+	{
+		strncpy (nums[numNums], yytext, yyleng);
+		numNums++;
+	}
+}
+
+
+int yywrap()
+{
+     /* dump contents of id and num tables */
+        printf("There were %d lines\n",line);
+	printf("Identifiers:\n");
+	for (i = 0; i < numIdent; i++)
+	{
+		printf("%s\n", idents[i]);
+	}
+	printf("Numbers:\n");
+	for (k = 0; k < numNums; k++)
+	{
+		printf("%s\n", nums[k]);
+	}
+
+     return 1;
+}
